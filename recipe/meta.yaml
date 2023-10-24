@@ -13,32 +13,62 @@ build:
     - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.11
-    - setuptools
-    - setuptools-scm
-    - pip
+    - python
 
-  run:
-    - python >=3.11
-    - plaid
-    - deepdiff
-    - scikit-learn
+outputs:
+  - name: mmgp-core
+    version: {{ version }}
 
-test:
-  imports:
-    - mmgp
-  source_files:
-    - tests
-    - examples
-  commands:
-    - cd tests
-    - python -m pytest
-    - cd ../examples
-    - python run_examples.py
+  requirements:
+    host:
+      - python >=3.11
+      - setuptools
+      - setuptools-scm
+      - pip
+
+    run:
+      - python >=3.11
+      - plaid
+      - deepdiff
+
+  test:
+    imports:
+      - mmgp
+
+  - name: mmgp-scikit-learn
+    version: {{ version }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
+
+  requirements:
+    host:
+      - python >=3.11
+      - setuptools
+      - setuptools-scm
+      - pip
+
+    run:
+      - python >=3.11
+      - plaid
+      - deepdiff
+      - scikit-learn
+
+  test:
+    imports:
+      - mmgp
+    source_files:
+      - tests
+      - examples
+    commands:
+      - cd tests
+      - python -m pytest
+      - cd ../examples
+      - python run_examples.py
 
 about:
   home: https://gitlab.com/drti/mmgp
