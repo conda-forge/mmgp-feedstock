@@ -23,52 +23,40 @@ outputs:
   - name: mmgp-core
     version: {{ version }}
 
-  requirements:
-    host:
-      - python >=3.11
-      - setuptools
-      - setuptools-scm
-      - pip
+    requirements:
+      host:
+        - python >=3.11
+        - setuptools
+        - setuptools-scm
+        - pip
 
-    run:
-      - python >=3.11
-      - plaid
-      - deepdiff
+      run:
+        - python >=3.11
+        - plaid
+        - deepdiff
 
-  test:
-    imports:
-      - mmgp
+    test:
+      imports:
+        - mmgp
 
   - name: mmgp-scikit-learn
     version: {{ version }}
     requirements:
       run:
         - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
+        - scikit-learn
 
-  requirements:
-    host:
-      - python >=3.11
-      - setuptools
-      - setuptools-scm
-      - pip
-
-    run:
-      - python >=3.11
-      - plaid
-      - deepdiff
-      - scikit-learn
-
-  test:
-    imports:
-      - mmgp
-    source_files:
-      - tests
-      - examples
-    commands:
-      - cd tests
-      - python -m pytest
-      - cd ../examples
-      - python run_examples.py
+    test:
+      imports:
+        - mmgp
+      source_files:
+        - tests
+        - examples
+      commands:
+        - cd tests
+        - python -m pytest
+        - cd ../examples
+        - python run_examples.py
 
 about:
   home: https://gitlab.com/drti/mmgp
