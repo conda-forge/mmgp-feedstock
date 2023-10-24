@@ -1,4 +1,4 @@
-{% set version = "0.0.3" %}
+{% set version = "0.0.4" %}
 
 package:
   name: mmgp
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: effb236fd594dffd5e9bcde03fa5489e7014533d7d3a1b3ac477f1923c496d6d
+  sha256: 70abe2fd907487279e77a4591cf85bd8cdfc8bfdca0aeb875bdd66f925f05c63
 
 build:
   script_env:
@@ -30,6 +30,14 @@ requirements:
 test:
   imports:
     - mmgp
+  source_files:
+    - tests
+    - examples
+  commands:
+    - cd tests
+    - python -m pytest
+    - cd ../examples
+    - python run_examples.py
 
 about:
   home: https://gitlab.com/drti/mmgp
