@@ -38,18 +38,6 @@ outputs:
         - python =3.11
         - plaid
 
-    # test:
-    #   requires:
-    #     - pytest
-    #     - deepdiff
-    #   imports:
-    #     - mmgp
-    #   source_files:
-    #     - tests
-    #   commands:
-    #     - cd tests
-    #     - python -m pytest
-
 
   - name: mmgp-sklearn
     version: {{ version }}
@@ -57,16 +45,6 @@ outputs:
       run:
         - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
         - scikit-learn
-
-    # test:
-    #   imports:
-    #     - mmgp
-    #   source_files:
-    #     - examples
-    #   commands:
-    #     - cd ../examples
-    #     - python run_examples.py --backend scikit-learn
-
 
 about:
   home: https://gitlab.com/drti/mmgp
