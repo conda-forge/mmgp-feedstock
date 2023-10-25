@@ -37,7 +37,10 @@ outputs:
       run:
         - python =3.11
         - plaid
-
+        
+    test:
+      commands:
+        - ls
 
   - name: mmgp-sklearn
     version: {{ version }}
@@ -46,6 +49,9 @@ outputs:
         - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
         - scikit-learn
 
+    test:
+      commands:
+        - ls
 about:
   home: https://gitlab.com/drti/mmgp
   summary: 'Mesh Morphing Gaussian Process (MMGP)'
