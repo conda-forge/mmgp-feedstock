@@ -43,7 +43,7 @@ outputs:
         - pytest
         - deepdiff
       imports:
-        - mmgp-core
+        - mmgp
       source_files:
         - tests
       commands:
@@ -60,7 +60,7 @@ outputs:
 
     test:
       imports:
-        - mmgp-sklearn
+        - mmgp
       source_files:
         - examples
       commands:
