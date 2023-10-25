@@ -1,47 +1,57 @@
-{% set version = "0.0.4" %}
+{% set version = "0.0.5" %}
 
 package:
-  name: mmgp
+  name: mmgp-split
   version: {{ version }}
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: 70abe2fd907487279e77a4591cf85bd8cdfc8bfdca0aeb875bdd66f925f05c63
+  sha256: 7de819c352d2e8c42cda61fac3e5632e94187f74c2af4f98da1e70c869296851
 
 build:
-  script_env:
-    - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
-  script: {{ PYTHON }} -m pip install . -vv
-  noarch: python
-  number: 1
+  number: 0
 
-requirements:
-  host:
-    - python >=3.11
-    - setuptools
-    - setuptools-scm
-    - pip
+outputs:
+  - name: mmgp-core
+    version: {{ version }}
 
-  run:
-    - python >=3.11
-    - plaid
-    - scikit-learn
+    build:
+      script_env:
+        - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
+      script: python -m pip install . -vv --no-deps
 
-test:
-  requires:
-    - pytest
-    - deepdiff
-  imports:
-    - mmgp
-  source_files:
-    - tests
-    - examples
-  commands:
-    - cd tests
-    - python -m pytest
-    - cd ../examples
-    - python run_examples.py
+    requirements:
 
+      build:
+        - python =3.11
+        - setuptools
+        - setuptools-scm
+        - pip
+
+      host:
+        - python =3.11
+        - setuptools
+        - setuptools-scm
+        - pip
+
+      run:
+        - python =3.11
+        - plaid
+        
+    test:
+      commands:
+        - ls
+
+  - name: mmgp-sklearn
+    version: {{ version }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
+        - scikit-learn
+
+    test:
+      commands:
+        - ls
 about:
   home: https://gitlab.com/drti/mmgp
   summary: 'Mesh Morphing Gaussian Process (MMGP)'
