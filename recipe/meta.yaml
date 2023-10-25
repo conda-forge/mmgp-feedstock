@@ -37,7 +37,7 @@ outputs:
       run:
         - python =3.11
         - plaid
-        
+
     test:
       commands:
         - ls
