@@ -23,7 +23,10 @@ outputs:
     requirements:
 
       build:
-        - python
+        - python >=3.11
+        - setuptools
+        - setuptools-scm
+        - pip
 
       host:
         - python >=3.11
