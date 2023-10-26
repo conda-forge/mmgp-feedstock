@@ -9,7 +9,7 @@ source:
   sha256: 7de819c352d2e8c42cda61fac3e5632e94187f74c2af4f98da1e70c869296851
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: mmgp-core
@@ -18,7 +18,7 @@ outputs:
     build:
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
-      script: python -m pip install . -vv --no-deps
+      script: {{ PYTHON }} -m pip install . -vv --no-deps
 
     requirements:
 
