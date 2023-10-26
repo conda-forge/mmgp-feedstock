@@ -44,11 +44,6 @@ outputs:
         - deepdiff
       imports:
         - mmgp
-      source_files:
-        - tests
-      commands:
-        - cd tests
-        - python -m pytest
 
   - name: mmgp-sklearn
     version: {{ version }}
@@ -61,8 +56,11 @@ outputs:
       imports:
         - mmgp
       source_files:
+        - tests
         - examples
       commands:
+        - cd tests
+        - python -m pytest
         - cd ../examples
         - python run_examples.py --backend scikit-learn
         
