@@ -39,8 +39,16 @@ outputs:
         - plaid
         
     test:
+      requires:
+        - pytest
+        - deepdiff
+      imports:
+        - mmgp
+      source_files:
+        - tests
       commands:
-        - ls
+        - cd tests
+        - python -m pytest
 
   - name: mmgp-sklearn
     version: {{ version }}
@@ -50,8 +58,14 @@ outputs:
         - scikit-learn
 
     test:
+      imports:
+        - mmgp
+      source_files:
+        - examples
       commands:
-        - ls
+        - cd ../examples
+        - python run_examples.py --backend scikit-learn
+        
 about:
   home: https://gitlab.com/drti/mmgp
   summary: 'Mesh Morphing Gaussian Process (MMGP)'
