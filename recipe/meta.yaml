@@ -10,7 +10,6 @@ source:
 
 build:
   number: 1
-  noarch: python  
 
 outputs:
   - name: mmgp-core
@@ -19,6 +18,7 @@ outputs:
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
       script: $PYTHON -m pip install --no-deps . -vv 
+      noarch: python        
           
     requirements:
 
@@ -44,6 +44,10 @@ outputs:
 
   - name: mmgp-sklearn
     version: {{ version }}
+
+    build:
+      noarch: python   
+    
     requirements:
       run:
         - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
