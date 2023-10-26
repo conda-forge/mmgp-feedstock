@@ -10,13 +10,15 @@ source:
 
 build:
   noarch: python   
+  skip: True  # [win or osx]
   number: 1
       
 outputs:
   - name: mmgp-core
     version: {{ version }}
     build:
-      noarch: python        
+      noarch: python      
+      skip: True  # [win or osx]      
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
       script: $PYTHON -m pip install --no-deps . -vv 
@@ -48,7 +50,8 @@ outputs:
 
     build:
       noarch: python   
-    
+      skip: True  # [win or osx]      
+      
     requirements:
       run:
         - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
