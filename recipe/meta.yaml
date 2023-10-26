@@ -9,17 +9,17 @@ source:
   sha256: 7de819c352d2e8c42cda61fac3e5632e94187f74c2af4f98da1e70c869296851
 
 build:
-  number: 1
   noarch: python   
+  number: 1
       
 outputs:
   - name: mmgp-core
     version: {{ version }}
     build:
+      noarch: python        
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
       script: $PYTHON -m pip install --no-deps . -vv 
-      noarch: python        
           
     requirements:
 
