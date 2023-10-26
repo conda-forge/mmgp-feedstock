@@ -39,9 +39,6 @@ outputs:
         - plaid
         
     test:
-      requires:
-        - pytest
-        - deepdiff
       imports:
         - mmgp
 
@@ -53,6 +50,8 @@ outputs:
         - scikit-learn
 
     test:
+      requires:
+        - pytest
       imports:
         - mmgp
       source_files:
