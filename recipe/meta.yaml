@@ -14,13 +14,12 @@ build:
 outputs:
   - name: mmgp-core
     version: {{ version }}
-
+    script: $PYTHON -m pip install --no-deps . -vv  # [not win]
+    script: bld_core.bat  # [win]
     build:
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
-      script: $PYTHON -m pip install --no-deps . -vv
-      noarch: python
-
+      
     requirements:
 
       build:
