@@ -10,7 +10,8 @@ source:
 
 build:
   number: 1
-
+  noarch: python   
+      
 outputs:
   - name: mmgp-core
     version: {{ version }}
