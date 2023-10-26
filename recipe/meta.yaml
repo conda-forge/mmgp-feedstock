@@ -8,13 +8,16 @@ package:
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
   sha256: 7de819c352d2e8c42cda61fac3e5632e94187f74c2af4f98da1e70c869296851
+
+build:
+  skip: True  # [win or osx] 
+  number: {{ number }} 
       
 outputs:
   - name: mmgp-core
     version: {{ version }}
     build:
       skip: True  # [win or osx] 
-      number: {{ number }}      
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
       script: $PYTHON -m pip install --no-deps . -vv 
@@ -45,7 +48,6 @@ outputs:
     version: {{ version }}
 
     build:
-      number: {{ number }}          
       skip: True  # [win or osx]      
       
     requirements:
