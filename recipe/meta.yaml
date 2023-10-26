@@ -10,7 +10,6 @@ source:
 
 build:
   number: 1
-  noarch: python
 
 outputs:
   - name: mmgp-core
@@ -20,23 +19,24 @@ outputs:
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
       script: $PYTHON -m pip install --no-deps . -vv
+      noarch: python
 
     requirements:
 
       build:
-        - python >=3.11
+        - python=3.11
         - setuptools
         - setuptools-scm
         - pip
 
       host:
-        - python >=3.11
+        - python=3.11
         - setuptools
         - setuptools-scm
         - pip
 
       run:
-        - python >=3.11
+        - python=3.11
         - plaid
         
     test:
