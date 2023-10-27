@@ -1,0 +1,88 @@
+{% set version = "0.0.5" %}
+{% set number = "1" %}
+
+package:
+  name: mmgp-split
+  version: {{ version }}
+
+source:
+  url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
+  sha256: 7de819c352d2e8c42cda61fac3e5632e94187f74c2af4f98da1e70c869296851
+
+build:
+  skip: True  # [win or osx] 
+  number: {{ number }} 
+      
+outputs:
+  - name: mmgp-core
+    version: {{ version }}
+    build:
+      skip: True  # [win or osx] 
+      script_env:
+        - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
+      script: $PYTHON -m pip install --no-deps . -vv 
+          
+    requirements:
+
+      build:
+        - python=3.11
+        - setuptools
+        - setuptools-scm
+        - pip
+
+      host:
+        - python=3.11
+        - setuptools
+        - setuptools-scm
+        - pip
+
+      run:
+        - python=3.11
+        - plaid
+        
+    test:
+      imports:
+        - mmgp
+
+  - name: mmgp-sklearn
+    version: {{ version }}
+
+    build:
+      skip: True  # [win or osx]      
+      
+    requirements:
+      run:
+        - {{ pin_subpackage('mmgp-core', max_pin='x.x') }}
+        - scikit-learn
+
+    test:
+      requires:
+        - pytest
+        - deepdiff        
+      imports:
+        - mmgp
+      source_files:
+        - tests
+        - examples
+      commands:
+        - cd tests
+        - python -m pytest
+        - cd ../examples
+        - python run_examples.py --backend scikit-learn
+        
+about:
+  home: https://gitlab.com/drti/mmgp
+  summary: 'Mesh Morphing Gaussian Process (MMGP)'
+  description: |
+    MMGP is the name of the numerical method proposed at SafranTech, the research center of Safran group, in the paper: Mesh Morphing Gaussian Process-based machine learning method for regression of physical problems under non-parameterized geometrical variability. MMGP also refers to this library, which implements this methods.
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  doc_url: https://mmgp.readthedocs.io
+  dev_url: https://gitlab.com/drti/mmgp
+
+extra:
+  recipe-maintainers:
+    - bstaber
+    - casenave
+    - xroynard
