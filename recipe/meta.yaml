@@ -1,4 +1,4 @@
-{% set version = "0.0.6" %}
+{% set version = "0.0.7" %}
 
 package:
   name: mmgp
@@ -6,14 +6,14 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: 80f95c5d8be9c6feff1cf3c00851f64fcea9c718d85c02a408613f4a2b0808c6
+  sha256: 63ddeb03d0e5c7a1c6d2a44244f359bed34c512c723cfcb1bbc0ba71f6b4c946
 
 build:
   script_env:
     - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
-  number: 1
+  number: 0
 
 requirements:
   host:
