@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: 30d7817bbc150263624e3856cf9477632cef6bf3183112ff15fe698cc8f9f4d9
+  sha256: 3b8db59a5a18486936f246ed1e0cabc74a0b91a1e0a93b738eb0698d18d4c487
 
 build:
   script_env:
