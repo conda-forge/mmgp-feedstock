@@ -1,3 +1,4 @@
+{% set python_min = '3.11' %}
 {% set version = "0.0.8" %}
 
 package:
@@ -13,17 +14,17 @@ build:
     - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.11
+    - python {{ python_min }}
     - setuptools
     - setuptools-scm
     - pip
 
   run:
-    - python >=3.11
+    - python >={{ python_min }}
     - plaid
     - muscat
     - scikit-learn
@@ -33,6 +34,7 @@ test:
   requires:
     - pytest
     - deepdiff
+    - python {{ python_min }}
   imports:
     - mmgp
   source_files:
