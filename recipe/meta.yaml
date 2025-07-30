@@ -1,4 +1,5 @@
-{% set version = "0.0.8" %}
+{% set version = "0.0.9" %}
+{% set python_min = "3.11" %}
 
 package:
   name: mmgp
@@ -6,7 +7,7 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: c7a98a92ba4d27eeee65512b47f286af7bf7f5fe4fbceea21ebc78d32560d166
+  sha256: a97b9dca0c30a1fbc91f814914c4ce0e3849c214fc7871ee1168a304ca7de582
 
 build:
   script_env:
@@ -17,20 +18,20 @@ build:
 
 requirements:
   host:
-    - python >=3.11
+    - python {{ python_min }}
     - setuptools
     - setuptools-scm
     - pip
 
   run:
-    - python >=3.11
-    - plaid
-    - muscat
+    - python >={{ python_min }}
+    - plaid =0.1.6
+    - muscat =2.4.1
     - scikit-learn
-    - gpy
     
 test:
   requires:
+    - python {{ python_min }}
     - pytest
     - deepdiff
   imports:
@@ -43,7 +44,6 @@ test:
     - python -m pytest
     - cd ../examples
     - python run_examples.py --backend scikit-learn
-    - python run_examples.py --backend GPy
 
 about:
   home: https://gitlab.com/drti/mmgp
