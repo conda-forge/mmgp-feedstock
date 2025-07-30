@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: 7a78543ae7ad084c20c093f2c5d90af2f53513bb4d1f7f9e364be5df8245e284
+  sha256: a97b9dca0c30a1fbc91f814914c4ce0e3849c214fc7871ee1168a304ca7de582
 
 build:
   script_env:
@@ -28,7 +28,6 @@ requirements:
     - plaid =0.1.6
     - muscat =2.4.1
     - scikit-learn
-    - gpy
     
 test:
   requires:
@@ -45,7 +44,6 @@ test:
     - python -m pytest
     - cd ../examples
     - python run_examples.py --backend scikit-learn
-    - python run_examples.py --backend GPy
 
 about:
   home: https://gitlab.com/drti/mmgp
