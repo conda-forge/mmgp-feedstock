@@ -1,4 +1,4 @@
-{% set version = "0.0.8" %}
+{% set version = "0.0.9" %}
 
 package:
   name: mmgp
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://gitlab.com/drti/mmgp/-/archive/{{ version }}/mmgp-{{ version }}.tar.gz
-  sha256: c7a98a92ba4d27eeee65512b47f286af7bf7f5fe4fbceea21ebc78d32560d166
+  sha256: 7a78543ae7ad084c20c093f2c5d90af2f53513bb4d1f7f9e364be5df8245e284
 
 build:
   script_env:
@@ -24,8 +24,8 @@ requirements:
 
   run:
     - python >=3.11
-    - plaid
-    - muscat
+    - plaid =0.1.6
+    - muscat =2.4.1
     - scikit-learn
     - gpy
     
